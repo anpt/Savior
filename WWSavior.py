@@ -8,15 +8,24 @@ output = open('output','w')
 template=srcFile.read()
 keys = csv.reader(keyFile)
 
+jump = False
+
 
 for row in keys:        
     index = 3
     tmp = template
     result = []
     while index < len(sys.argv):
+        if (row[int(sys.argv[index])] == ""):
+            jump = True
         result.append(row[int(sys.argv[index])]) 
         index = index +1
-    
-    tmp = tmp.format(*result)
-    print(tmp,file=output),
+        
+    if (jump == False):
+        tmp = tmp.format(*result)
+        print(tmp,file=output),
+    else:
+        print("Inga giltiga värden"),
+    jump = False
 
+        

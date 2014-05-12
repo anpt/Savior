@@ -11,6 +11,10 @@ srcFile = open(sys.argv[1], 'r')
 keyFile = open(sys.argv[2], 'r')
 output = open('output','w')
 
+#var for dubblets
+oldRow = []
+first = True
+
 template=srcFile.read()
 keys = csv.reader(keyFile)
 jump = False
@@ -27,13 +31,19 @@ for row in keys:
                 break
         except:
             jump = True
-            break        result.append(row[int(sys.argv[index])])
+            break        
+        result.append(row[int(sys.argv[index])])
         index = index +1
-        
-    if (jump == False):
-        tmp = tmp.format(*result)
-        print(tmp,file=output),
+    if (oldRow==result or first):
+        if (jump == False):
+            tmp = tmp.format(*result)
+            print(tmp,file=output),
+        else:
+            print("Inga giltiga värden"),
     else:
-        print("Inga giltiga värden"),
+        print("Dublett!"),
+    oldRow = result
+    first = False
     jump = False
+    
     

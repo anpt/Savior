@@ -11,11 +11,6 @@ srcFile = open(sys.argv[1], 'r')
 keyFile = open(sys.argv[2], 'r')
 output = open('output','w')
 
-#Varibles for dublett
-oldRow = []
-oldTmp = []
-first = True;
-
 template=srcFile.read()
 keys = csv.reader(keyFile)
 jump = False
@@ -24,30 +19,23 @@ for row in keys:
     index = 3
     tmp = template
     result = []
-    oldTmp = []
+    
     while index < len(sys.argv):
         try:
             if (row[int(sys.argv[index])] == ""):
                 jump = True
                 break
-            if (first == False):
-                if (row[int(sys.argv[index])] == oldRow[index-2]):
-                    jump = True
-                    break
         except:
             jump = True
-            break        
+            break
+
         result.append(row[int(sys.argv[index])])
-        oldTmp.append(row[int(sys.argv[index])])
         index = index +1
         
-        
-        if (jump == False):
-            tmp = tmp.format(*result)
-            print(tmp,file=output),
-        else:
-            print("Inga giltiga värden"),
+    if (jump == False):
+        tmp = tmp.format(*result)
+        print(tmp,file=output),
+    else:
+        print("Inga giltiga värden"),
     jump = False
-    first = False
-    oldRow = oldTmp
     

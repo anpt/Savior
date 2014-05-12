@@ -27,9 +27,7 @@ for row in keys:
                 break
         except:
             jump = True
-            break
-
-        result.append(row[int(sys.argv[index])])
+            break        result.append(row[int(sys.argv[index])])
         index = index +1
         
     if (jump == False):

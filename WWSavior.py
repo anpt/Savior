@@ -34,7 +34,7 @@ for row in keys:
             break        
         result.append(row[int(sys.argv[index])])
         index = index +1
-    if (oldRow==result or first):
+    if (oldRow!=result or first):
         if (jump == False):
             tmp = tmp.format(*result)
             print(tmp,file=output),

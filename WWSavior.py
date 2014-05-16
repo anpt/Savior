@@ -1,8 +1,8 @@
 #WWSavior is a program to create template in a wonderware system.
-#First argument point to a mall how the template should be created, it can contains several templates if we want.
-#Mark the points that gonna be replaced eith {0}, {1} and so on.
+#First argument point to a mall how the template should be created, it can contains several templates.
+#Mark the points that gonna be replaced with {0}, {1} and so on.
 #Second argument point to the csv
-#Rest of the arguments check with parmeter to replace i witch place
+#Rest of the arguments check with parmeter to replace {i} with.
 
 import sys
 import csv
@@ -39,9 +39,9 @@ for row in keys:
             tmp = tmp.format(*result)
             print(tmp,file=output),
         else:
-            print("Inga giltiga värden"),
+            print("Not a Value"),
     else:
-        print("Dublett!"),
+        print("duplicate Row! Aborted row insert"),
     oldRow = result
     first = False
     jump = False
